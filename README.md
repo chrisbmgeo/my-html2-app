@@ -12,3 +12,4 @@
 - HTML5
 - Tailwind CSS (μέσω CDN)
 - Vanilla JavaScript
+
