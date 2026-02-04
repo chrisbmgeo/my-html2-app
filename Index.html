@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Η Κατάρα του Τουταγχαμών</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+      }
+      h1, h2, h3, .serif {
+        font-family: 'Noto Serif', serif;
+      }
+      /* Custom Animations for transitions */
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in {
+        animation: fade-in 0.5s ease-out;
+      }
+      @keyframes slide-up {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .animate-slide-up {
+          animation: slide-up 0.5s ease-out;
+      }
+      @keyframes zoom-in {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      .animate-zoom-in {
+        animation: zoom-in 0.5s ease-out;
+      }
+      @keyframes bounce-slow {
+        0%, 100% {
+          transform: translateY(-5%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+      .animate-bounce-slow {
+        animation: bounce-slow 2s infinite;
+      }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+
+<div class="min-h-screen bg-gradient-to-br from-[#E8D5B7] to-[#D4A574] p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+    
+    <!-- Header -->
+    <header class="text-center mb-8 bg-gradient-to-r from-[#8B6914] to-[#B8860B] rounded-2xl shadow-xl p-6 md:p-8 text-white transform hover:scale-[1.01] transition-transform duration-500">
+      <h1 class="text-3xl md:text-5xl font-bold mb-2 drop-shadow-md">⚱️ Η Κατάρα του Τουταγχαμών ⚱️</h1>
+      <p class="text-lg md:text-xl opacity-90 font-light tracking-wide">Μια Δραματική Αφήγηση της Αλήθειας</p>
+    </header>
+
+    <!-- Progress -->
+    <div class="mb-8">
+      <div class="flex justify-between mb-2 font-bold text-[#8B6914] px-1">
+        <span>Πρόοδος</span>
+        <span id="progress-text">1 / 7</span>
+      </div>
+      <div class="w-full h-3 bg-white/30 rounded-full overflow-hidden shadow-inner">
+        <div id="progress-bar" class="h-full bg-gradient-to-r from-[#3A6B35] to-[#8B6914] transition-all duration-700 ease-out" style="width: 14.28%">
+        </div>
+      </div>
+    </div>
+
+    <!-- Story Card -->
+    <main id="story-card" class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-10 min-h-[400px] mb-8 relative overflow-hidden border border-[#D4A574]/30">
+      
+      <!-- Standard Content Slide -->
+      <div id="main-content">
+        <div class="animate-slide-up">
+          <div class="flex items-center gap-4 mb-6 border-b-2 border-[#E8D5B7] pb-4">
+            <span id="slide-emoji" class="text-5xl animate-bounce-slow"></span>
+            <h2 id="slide-title" class="text-2xl md:text-3xl font-bold text-[#8B6914] serif"></h2>
+          </div>
+
+          <div id="slide-intro" class="space-y-4 text-lg text-gray-700 leading-relaxed mb-8"></div>
+
+          <!-- Quote Section -->
+          <blockquote id="quote-section" class="my-8 relative p-6 bg-gradient-to-r from-[#FFF8F0] to-[#FFE4C4] border-l-4 border-[#8B6914] rounded-r-lg shadow-sm" style="display: none;">
+            <div id="quote-name" class="text-[#8B6914] font-bold mb-2 uppercase tracking-wider text-sm"></div>
+            <p class="italic text-gray-800 text-lg font-serif">"<span id="quote-text"></span>"</p>
+          </blockquote>
+
+          <!-- Myth vs Reality Grid -->
+          <div id="myths-section" class="grid md:grid-cols-2 gap-6 my-8" style="display: none;"></div>
+
+          <!-- Timeline -->
+          <div id="timeline-section" class="space-y-4 my-8" style="display: none;"></div>
+
+          <!-- Stats Counter -->
+          <div id="stats-section" class="my-8 text-center p-8 bg-gradient-to-br from-green-50 to-emerald-100 border-2 border-green-200 rounded-2xl shadow-inner" style="display: none;">
+            <h3 id="stats-title" class="text-green-800 font-bold text-lg mb-2"></h3>
+            <div id="stats-value" class="text-5xl font-bold text-[#8B6914] mb-2"></div>
+            <p id="stats-subtitle" class="text-gray-600"></p>
+          </div>
+
+          <!-- Revelation Box -->
+          <div id="revelation-section" class="bg-gradient-to-br from-[#3A6B35]/10 to-[#3A6B35]/5 border-l-4 border-[#3A6B35] p-6 rounded-r-xl mt-8" style="display: none;">
+            <h3 class="text-[#3A6B35] font-bold text-lg mb-2 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg>
+              <span id="revelation-title"></span>
+            </h3>
+            <p id="revelation-text" class="text-gray-800 leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Final Results Slide -->
+      <div id="final-content" class="text-center animate-zoom-in py-8" style="display: none;">
+        <div class="text-7xl mb-6">🏛️</div>
+        <h2 class="text-3xl md:text-4xl font-bold text-[#3A6B35] mb-4 serif">Συγχαρητήρια!</h2>
+        <p class="text-xl text-gray-700 mb-8">Μόλις ανακάλυψες την ιστορική αλήθεια.</p>
+        
+        <div class="bg-green-50 border-4 border-green-200 p-8 rounded-3xl shadow-inner max-w-2xl mx-auto">
+          <h3 class="text-2xl font-bold text-green-800 mb-6 underline decoration-wavy decoration-green-300">Συνοπτικά Ευρήματα</h3>
+          <ul class="space-y-3 text-left max-w-lg mx-auto text-lg text-gray-700">
+              <li class="flex items-start gap-3">
+                <span class="text-green-600 font-bold text-xl">✓</span> 
+                <span>Η "επιγραφή της κατάρας" ήταν μύθος.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-green-600 font-bold text-xl">✓</span> 
+                <span>Ο Λόρδος Κάρναρβον πέθανε από ιατρικά αίτια.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-green-600 font-bold text-xl">✓</span> 
+                <span>Δεν υπήρξε γενικό blackout στο Κάιρο.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-green-600 font-bold text-xl">✓</span> 
+                <span>Ο Κάρτερ έζησε 17 χρόνια μετά το άνοιγμα.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-green-600 font-bold text-xl">✓</span> 
+                <span>Το 86% των παρόντων επέζησε για δεκαετίες.</span>
+              </li>
+          </ul>
+          <div class="mt-8 pt-6 border-t border-green-200">
+              <div class="text-2xl font-bold text-[#8B6914] bg-white inline-block px-6 py-2 rounded-full shadow-lg transform -rotate-2 border border-[#8B6914]">
+                  Ο Μύθος Καταρρίφθηκε! 🎯
+              </div>
+          </div>
+        </div>
+        
+        <button id="restart-btn" class="mt-10 px-8 py-3 bg-[#8B6914] hover:bg-[#6d5210] text-white rounded-full font-bold shadow-lg transition-all transform hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 mx-auto">
+          <span>🔄</span> Διαβάστε ξανά
+        </button>
+      </div>
+
+    </main>
+
+    <!-- Navigation -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <button id="prev-btn" class="w-full sm:w-auto min-w-[160px] px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-md flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed bg-[#E8D5B7] text-[#5c450d] hover:bg-[#dcc097]">
+        <span>←</span> Πίσω
+      </button>
+
+      <button id="next-btn" class="w-full sm:w-auto min-w-[160px] px-6 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 bg-gradient-to-r from-[#8B6914] to-[#A07817] text-white flex items-center justify-center gap-2">
+        Επόμενο <span>→</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const stories = [
+    {
+      title: "Το Μυστήριο Αρχίζει",
+      emoji: "📖",
+      introText: [
+        "Το 1922, ένας τολμηρός αρχαιολόγος, ο Χάουαρντ Κάρτερ, ανακαλύπτει κάτι ιστορικό στην Κοιλάδα των Βασιλέων: τον άθικτο τάφο του νεαρού Φαραώ Τουταγχαμών.",
+        "Αλλά κανείς δεν περίμενε αυτό που θα ακολουθούσε..."
+      ],
+      quote: {
+        name: "Η Θρυλική Αφήγηση",
+        text: "Λέγεται ότι στον τάφο ήταν γραμμένη μια επιγραφή: 'Ο θάνατος θα έρθει με γρήγορα φτερά σε όποιον ταράξει την ειρήνη του Βασιλιά'."
+      },
+      revelation: {
+        title: "Η Γέννηση του Μύθου",
+        text: "Ο Τύπος της εποχής άρπαξε το θέμα και δημιούργησε το πιο φημισμένο μυστήριο της αρχαιολογίας: Την Κατάρα του Τουταγχαμών."
+      }
+    },
+    {
+      title: "Ο Πρώτος Θάνατος",
+      emoji: "💀",
+      introText: [
+        "Πέντε μήνες μετά το άνοιγμα του τάφου (Απρίλιος 1923), ο Λόρδος Κάρναρβον, ο χρηματοδότης της ανασκαφής, πεθαίνει ξαφνικά."
+      ],
+      myths: [
+        {
+          mythTitle: "Ο Μύθος",
+          mythText: "Καταράστηκε! Ο Φαραώ τον σκότωσε επειδή τόλμησε να ανοίξει τον τάφο!",
+          realityTitle: "Η Πραγματικότητα",
+          realityText: "Ο Κάρναρβον, ήδη ασθενής, κόπηκε κατά το ξύρισμα πάνω σε ένα τσίμπημα κουνουπιού."
+        }
+      ],
+      revelation: {
+        title: "Τι Έδειξαν τα Ιατρικά Έγγραφα",
+        text: "Η αιτία θανάτου ήταν μόλυνση του αίματος (σηψαιμία) από το τραύμα. Ο Κάρναρβον ήταν ήδη ταλαιπωρημένος από πνευμονία. Η μόλυνση ήταν θανάσιμη για τα πρότυπα της εποχής (προ αντιβιοτικών), αλλά απολύτως φυσιολογική."
+      }
+    },
+    {
+      title: "Τα Περίεργα Γεγονότα",
+      emoji: "🌃",
+      introText: [
+        "Όσο ο μύθος εξαπλωνόταν, προστίθεντο όλο και περισσότερες «αποδείξεις»..."
+      ],
+      myths: [
+        {
+          mythTitle: "Blackout στο Κάιρο",
+          mythText: "Τη στιγμή που πέθανε ο Κάρναρβον, όλα τα φώτα στο Κάιρο έσβησαν!",
+          realityTitle: "Η Αλήθεια",
+          realityText: "Κανένα επίσημο έγγραφο της εταιρείας ηλεκτρισμού ή της κυβέρνησης δεν επιβεβαιώνει αυτό το γεγονός."
+        },
+        {
+          mythTitle: "Η Σκυλίτσα Susie",
+          mythText: "Ο σκύλος του Κάρναρβον στην Αγγλία ούρλιαξε και πέθανε τη ΣΤΙΓΜΗ του θανάτου του αφεντικού του...",
+          realityTitle: "Η Αλήθεια",
+          realityText: "Δεν υπάρχουν σύγχρονες πηγές. Αυτή η λεπτομέρεια προστέθηκε στον θρύλο δεκαετίες αργότερα για δραματικό αποτέλεσμα."
+        }
+      ],
+      revelation: {
+        title: "Σημαντικό",
+        text: "Οι εφημερίδες της εποχής δημιούργησαν έναν ανταγωνισμό για το πιο εντυπωσιακό άρθρο. Η αλήθεια χανόταν στον βωμό της δημοσιότητας."
+      }
+    },
+    {
+      title: "Το Καναρίνι & η Κόμπρα",
+      emoji: "🐍",
+      introText: [
+        "Ένα από τα λίγα γεγονότα που έχουν βάση: Το καναρίνι του Κάρτερ φαγώθηκε από μια κόμπρα."
+      ],
+      myths: [
+        {
+          mythTitle: "Ο Μύθος",
+          mythText: "Η Κόμπρα είναι το σύμβολο των Φαραώ! Η κατάρα αρχίζει να χτυπά!",
+          realityTitle: "Η Πραγματικότητα",
+          realityText: "Ήταν απλώς μια άγρια κόμπρα. Συνηθισμένο ζώο στην Αίγυπτο που συχνάζει κοντά σε ερείπια και τάφους."
+        }
+      ],
+      quote: {
+        name: "Howard Carter (Ο Εξερευνητής)",
+        text: "Το καναρίνι ήταν σε κλουβί. Στην έρημο, τα φίδια αναζητούν τροφή παντού."
+      },
+      revelation: {
+        title: "Η Ιστορία Ενισχύεται",
+        text: "Οι μύθοι γιγαντώνονται όταν υπάρχουν συμβολισμοί. Το γεγονός ότι ήταν κόμπρα (βασιλικό σύμβολο) θεωρήθηκε οιωνός, ενώ ήταν απλώς φυσικό ένστικτο."
+      }
+    },
+    {
+      title: "Ο Άνδρας που Άνοιξε τον Τάφο",
+      emoji: "🕵️",
+      introText: [
+        "Αν η κατάρα ήταν αληθινή, ποιος θα έπρεπε να πεθάνει πρώτος;",
+        "Ο Χάουαρντ Κάρτερ. Αυτός που άνοιξε τον τάφο. Αυτός που άγγιξε τη μούμια."
+      ],
+      timeline: [
+        {
+          year: "1922-1939",
+          text: "Πέρασε 17 ΧΡΟΝΙΑ μέσα στον τάφο, καταγράφοντας και μελετώντας τα αντικείμενα, εργαζόμενος σε συνθήκες που ήταν θεωρητικά «καταραμένες»."
+        },
+        {
+          year: "1939",
+          text: "Ο Κάρτερ πεθαίνει από φυσικά αίτια σε ηλικία 64 ετών. Από λέμφωμα, μια μορφή καρκίνου. Όχι από ξαφνικό ή μυστηριώδη θάνατο."
+        }
+      ],
+      revelation: {
+        title: "Η Μεγαλύτερη Απόδειξη",
+        text: "Ο άνθρωπος που ευθέως βεβήλωσε την «αιώνια γαλήνη» του Φαραώ έζησε σχεδόν δύο δεκαετίες μετά την ανακάλυψη. Πολύ αργή κατάρα!"
+      }
+    },
+    {
+      title: "Η Αποδόμηση των Αριθμών",
+      emoji: "📊",
+      introText: [
+        "Ας μιλήσουμε με αριθμούς. 58 άτομα ήταν παρόντα στο άνοιγμα του τάφου και της σαρκοφάγου."
+      ],
+      stats: {
+        title: "Στατιστικά Θνησιμότητας (12 χρόνια μετά)",
+        value: "Μόνο 8",
+        subtitle: "από τους 58 πέθαναν (13.8%)"
+      },
+      revelation: {
+        title: "Τι Είναι Φυσιολογικό;",
+        text: "Σε ένα δείγμα 58 ανθρώπων (πολλοί εκ των οποίων ηλικιωμένοι) στις αρχές του 20ού αιώνα, το να πεθάνουν 8 άτομα μέσα σε μια δεκαετία είναι στατιστικά αναμενόμενο. Δεν υπάρχει καμία απόκλιση."
+      },
+      quote: {
+        name: "Ιστορικός Herbert E. Winlock", 
+        text: "Ο μύθος του τάφου του Τουταγχαμών είναι απλώς μια εξαιρετική ιστορία τρόμου που πούλησε εκατομμύρια εφημερίδες."
+      }
+    },
+    {
+      title: "Η Αλήθεια Νικάει",
+      emoji: "🏆",
+      introText: [],
+      isFinal: true
+    }
+  ];
+
+  let currentSlideIndex = 0;
+
+  const totalSlides = stories.length;
+  const storyCard = document.getElementById('story-card');
+  const progressText = document.getElementById('progress-text');
+  const progressBar = document.getElementById('progress-bar');
+  const mainContent = document.getElementById('main-content');
+  const finalContent = document.getElementById('final-content');
+  const slideEmoji = document.getElementById('slide-emoji');
+  const slideTitle = document.getElementById('slide-title');
+  const slideIntro = document.getElementById('slide-intro');
+  const quoteSection = document.getElementById('quote-section');
+  const quoteName = document.getElementById('quote-name');
+  const quoteText = document.getElementById('quote-text');
+  const mythsSection = document.getElementById('myths-section');
+  const timelineSection = document.getElementById('timeline-section');
+  const statsSection = document.getElementById('stats-section');
+  const statsTitle = document.getElementById('stats-title');
+  const statsValue = document.getElementById('stats-value');
+  const statsSubtitle = document.getElementById('stats-subtitle');
+  const revelationSection = document.getElementById('revelation-section');
+  const revelationTitle = document.getElementById('revelation-title');
+  const revelationText = document.getElementById('revelation-text');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const restartBtn = document.getElementById('restart-btn');
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderSlide() {
+    storyCard.classList.remove('animate-fade-in');
+    void storyCard.offsetWidth; // Trigger reflow to restart animation
+    storyCard.classList.add('animate-fade-in');
+    
+    const slide = stories[currentSlideIndex];
+
+    // Update Progress
+    progressText.textContent = `${currentSlideIndex + 1} / ${totalSlides}`;
+    progressBar.style.width = `${((currentSlideIndex + 1) / totalSlides) * 100}%`;
+
+    if (slide.isFinal) {
+      mainContent.style.display = 'none';
+      finalContent.style.display = 'block';
+    } else {
+      mainContent.style.display = 'block';
+      finalContent.style.display = 'none';
+
+      // Basic info
+      slideEmoji.textContent = slide.emoji || '';
+      slideTitle.textContent = slide.title || '';
+      slideIntro.innerHTML = slide.introText.map(p => `<p>${p}</p>`).join('');
+
+      // Quote
+      if (slide.quote) {
+        quoteName.textContent = slide.quote.name;
+        quoteText.textContent = slide.quote.text;
+        quoteSection.style.display = 'block';
+      } else {
+        quoteSection.style.display = 'none';
+      }
+
+      // Myths
+      if (slide.myths) {
+        mythsSection.innerHTML = slide.myths.map(item => `
+          <div class="bg-red-50 border-2 border-red-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-red-700 font-bold mb-2 flex items-center gap-2">
+              <span>👻</span> ${item.mythTitle}
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">${item.mythText}</p>
+          </div>
+          <div class="bg-green-50 border-2 border-green-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
+            <div class="text-green-700 font-bold mb-2 flex items-center gap-2">
+              <span>🔬</span> ${item.realityTitle}
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed">${item.realityText}</p>
+          </div>
+        `).join('');
+        mythsSection.style.display = 'grid';
+      } else {
+        mythsSection.style.display = 'none';
+      }
+
+      // Timeline
+      if (slide.timeline) {
+        timelineSection.innerHTML = slide.timeline.map(event => `
+          <div class="flex gap-4 p-4 bg-amber-50 rounded-xl border-l-4 border-[#8B6914]">
+            <div class="text-xl font-bold text-[#8B6914] min-w-[100px]">${event.year}</div>
+            <div class="text-gray-700">${event.text}</div>
+          </div>
+        `).join('');
+        timelineSection.style.display = 'block';
+      } else {
+        timelineSection.style.display = 'none';
+      }
+
+      // Stats
+      if (slide.stats) {
+        statsTitle.textContent = slide.stats.title;
+        statsValue.textContent = slide.stats.value;
+        statsSubtitle.textContent = slide.stats.subtitle;
+        statsSection.style.display = 'block';
+      } else {
+        statsSection.style.display = 'none';
+      }
+
+      // Revelation
+      if (slide.revelation) {
+        revelationTitle.textContent = slide.revelation.title;
+        revelationText.textContent = slide.revelation.text;
+        revelationSection.style.display = 'block';
+      } else {
+        revelationSection.style.display = 'none';
+      }
+    }
+
+    // Update Navigation
+    prevBtn.disabled = currentSlideIndex === 0;
+    nextBtn.style.display = currentSlideIndex === totalSlides - 1 ? 'none' : 'flex';
+  }
+
+  function nextSlide() {
+    if (currentSlideIndex < totalSlides - 1) {
+      currentSlideIndex++;
+      renderSlide();
+      scrollToTop();
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlideIndex > 0) {
+      currentSlideIndex--;
+      renderSlide();
+      scrollToTop();
+    }
+  }
+  
+  function restart() {
+    currentSlideIndex = 0;
+    renderSlide();
+    scrollToTop();
+  }
+
+  // Event Listeners
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+  restartBtn.addEventListener('click', restart);
+
+  // Initial Render
+  renderSlide();
+});
+</script>
+
+</body>
+</html>
